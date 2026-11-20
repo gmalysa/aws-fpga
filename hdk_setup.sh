@@ -23,6 +23,11 @@ if [ "$script" == "$0" ]; then
   exit 2
 fi
 
+if [[ $(type -t grep) == "alias" ]]; then
+  echo "ERROR: hdk_setup requires vanilla grep options, please remove your alias"
+  return 1
+fi
+
 full_script=$(readlink -f $script)
 script_name=$(basename $full_script)
 script_dir=$(dirname $full_script)
